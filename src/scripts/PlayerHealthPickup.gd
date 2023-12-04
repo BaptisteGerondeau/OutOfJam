@@ -14,6 +14,8 @@ func _ready():
 	area_entered.connect(on_area_hit)
 
 func despawn():
+	get_node("../GPUParticles3D").global_position = global_position
+	get_node("../GPUParticles3D").restart()
 	queue_free()
 	
 func on_area_hit(area):

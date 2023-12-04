@@ -5,7 +5,7 @@
 [ext_resource type="Environment" uid="uid://cohvfun4e4h3y" path="res://src/etc/new_environment.tres" id="4_amjc6"]
 [ext_resource type="CameraAttributesPractical" uid="uid://dx4bducuafu7t" path="res://src/etc/new_camera_attributes_practical.tres" id="5_w5lum"]
 [ext_resource type="PackedScene" uid="uid://cj5g1kdn7ke2q" path="res://src/scenes/player.tscn" id="5_w8rll"]
-[ext_resource type="PackedScene" uid="uid://7hxvij2mwlis" path="res://src/scenes/jelly_monster.tscn" id="6_58j00"]
+[ext_resource type="PackedScene" uid="uid://b7e24mr3rs3ge" path="res://src/scenes/jelly_monster.tscn" id="6_58j00"]
 [ext_resource type="Script" path="res://src/scripts/UI.gd" id="7_bqg8s"]
 [ext_resource type="LabelSettings" uid="uid://6103sawbiw2n" path="res://src/etc/label_settings.tres" id="7_mhh8w"]
 
@@ -33,9 +33,6 @@ camera_attributes = ExtResource("5_w5lum")
 
 [node name="Player" parent="." instance=ExtResource("5_w8rll")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25941, 0, 0)
-
-[node name="JellyMonster" parent="." instance=ExtResource("6_58j00")]
-transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, -5.69606, 0, 0)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("7_bqg8s")
@@ -87,3 +84,6 @@ grow_vertical = 0
 theme = SubResource("Theme_7tqcf")
 step = 1.0
 show_percentage = false
+
+[node name="JellyMonster2" parent="." instance=ExtResource("6_58j00")]
+transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, -5.74259, 0, 0)

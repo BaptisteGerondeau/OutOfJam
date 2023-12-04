@@ -1,5 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
 
+# Builds
+builds/*
+
 # Blender
-.blend1
+*.blend1
