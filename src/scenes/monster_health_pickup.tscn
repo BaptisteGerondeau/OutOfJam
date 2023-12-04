@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx525kwtg3cck"]
+
+[ext_resource type="PackedScene" uid="uid://djpliwngdc6wc" path="res://src/scenes/player_health_pickup.tscn" id="1_dexle"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8yp2"]
+albedo_color = Color(0.258824, 0, 0.360784, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_edswr"]
+material = SubResource("StandardMaterial3D_n8yp2")
+
+[node name="MonsterHealthPickup" instance=ExtResource("1_dexle")]
+metadata/PlayerPickup = false
+
+[node name="Area3D" parent="." index="0"]
+collision_mask = 24
+
+[node name="MeshInstance3D" parent="Area3D" index="1"]
+mesh = SubResource("SphereMesh_edswr")

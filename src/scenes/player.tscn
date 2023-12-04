@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://cj5g1kdn7ke2q"]
+
+[ext_resource type="Script" path="res://src/scripts/PlayerController.gd" id="1_h8hrs"]
+[ext_resource type="Environment" uid="uid://cohvfun4e4h3y" path="res://src/etc/new_environment.tres" id="2_ra3n6"]
+[ext_resource type="CameraAttributesPractical" uid="uid://dx4bducuafu7t" path="res://src/etc/new_camera_attributes_practical.tres" id="3_ok8mq"]
+[ext_resource type="Script" path="res://src/scripts/Gun.gd" id="4_81byc"]
+[ext_resource type="PackedScene" uid="uid://bb4ll527i8qnr" path="res://src/scenes/bullet.tscn" id="5_yekru"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wcjs"]
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_w21ab"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1mx2m"]
+height = 2.0059
+
+[node name="Player" type="Node3D"]
+
+[node name="PlayerCharacterBody" type="CharacterBody3D" parent="."]
+collision_mask = 14
+axis_lock_linear_z = true
+motion_mode = 1
+script = ExtResource("1_h8hrs")
+speed = 10.0
+metadata/Player = ""
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="PlayerCharacterBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925318, 0)
+material_override = SubResource("StandardMaterial3D_0wcjs")
+mesh = SubResource("CapsuleMesh_w21ab")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925783, 0)
+shape = SubResource("CapsuleShape3D_1mx2m")
+
+[node name="Camera3D" type="Camera3D" parent="PlayerCharacterBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.507545, 1.2858, 12.955)
+environment = ExtResource("2_ra3n6")
+attributes = ExtResource("3_ok8mq")
+size = 21.8149
+
+[node name="StartingPosition" type="Node3D" parent="PlayerCharacterBody"]
+
+[node name="Area3D" type="Area3D" parent="PlayerCharacterBody"]
+collision_mask = 12
+metadata/Player = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925783, 0)
+shape = SubResource("CapsuleShape3D_1mx2m")
+
+[node name="Gun" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.422309, 0.995359, 0)
+script = ExtResource("4_81byc")
+bullet = ExtResource("5_yekru")
+
+[node name="FireCooldown" type="Timer" parent="Gun"]
+wait_time = 0.1
+one_shot = true

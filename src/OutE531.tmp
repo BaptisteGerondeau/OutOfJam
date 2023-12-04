@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://bgr2vwweh1vxg"]
+
+[ext_resource type="Texture2D" uid="uid://dc8nj6hjiha85" path="res://textures/prototype_grid.png" id="1_d4x0q"]
+[ext_resource type="Script" path="res://scenes/PlayerController.gd" id="1_p52g0"]
+[ext_resource type="Script" path="res://scenes/Obstacles.gd" id="3_demt1"]
+[ext_resource type="PackedScene" uid="uid://bllcc0r0xkjli" path="res://scenes/test_obstacle.tscn" id="4_km1s4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w0dnp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m81p1"]
+size = Vector3(190, 1, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wjyp1"]
+albedo_texture = ExtResource("1_d4x0q")
+uv1_scale = Vector3(6.005, 6.005, 6.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hijky"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wcjs"]
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_w21ab"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1mx2m"]
+height = 2.0059
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pgqqm"]
+size = Vector3(5.11905, 14.43, 8.0523)
+
+[node name="Root" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000142455, -0.0135269, 0.00250244)
+
+[node name="etc" type="Node3D" parent="."]
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D"]
+transform = Transform3D(95, 0, 0, 0, 1, 0, 0, 0, 4, 0.030248, 0, 0)
+mesh = SubResource("PlaneMesh_w0dnp")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, -0.5, 0)
+shape = SubResource("BoxShape3D_m81p1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level"]
+transform = Transform3D(0.114857, -0.986791, -0.114245, 0.73568, 0.00721601, 0.677291, -0.66752, -0.161839, 0.726791, 0, 12, 19.4355)
+light_color = Color(1, 0.815686, 0.592157, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -7.99653)
+material_override = SubResource("StandardMaterial3D_wjyp1")
+mesh = SubResource("BoxMesh_hijky")
+
+[node name="Player" type="Node3D" parent="."]
+
+[node name="PlayerCharacterBody" type="CharacterBody3D" parent="Player"]
+script = ExtResource("1_p52g0")
+speed = 10.0
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="Player/PlayerCharacterBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925318, 0)
+material_override = SubResource("StandardMaterial3D_0wcjs")
+mesh = SubResource("CapsuleMesh_w21ab")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/PlayerCharacterBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925783, 0)
+shape = SubResource("CapsuleShape3D_1mx2m")
+
+[node name="Camera3D" type="Camera3D" parent="Player/PlayerCharacterBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23965, 2.39898, 12.955)
+
+[node name="Obstacles" type="Node3D" parent="."]
+script = ExtResource("3_demt1")
+ObstacleMeshes = [ExtResource("4_km1s4")]
+
+[node name="Area3D" type="Area3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8851, 7.38002, 2.23868)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.99135)
+shape = SubResource("BoxShape3D_pgqqm")
+
+[node name="ObstacleSpawnTimer" type="Timer" parent="Obstacles"]

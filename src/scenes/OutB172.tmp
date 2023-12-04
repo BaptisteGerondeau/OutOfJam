@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccbvjbdr3u66a"]
+
+[ext_resource type="Script" path="res://src/scripts/Game.gd" id="1_lctow"]
+[ext_resource type="PackedScene" uid="uid://cra2qdwvmq34l" path="res://src/scenes/level.tscn" id="4_6vhuh"]
+[ext_resource type="Environment" uid="uid://cohvfun4e4h3y" path="res://src/etc/new_environment.tres" id="4_amjc6"]
+[ext_resource type="CameraAttributesPractical" uid="uid://dx4bducuafu7t" path="res://src/etc/new_camera_attributes_practical.tres" id="5_w5lum"]
+[ext_resource type="PackedScene" uid="uid://cj5g1kdn7ke2q" path="res://src/scenes/player.tscn" id="5_w8rll"]
+[ext_resource type="PackedScene" uid="uid://7hxvij2mwlis" path="res://src/scenes/jelly_monster.tscn" id="6_58j00"]
+
+[node name="Root" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000142455, -0.0135269, 0.00250244)
+script = ExtResource("1_lctow")
+
+[node name="etc" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="etc"]
+environment = ExtResource("4_amjc6")
+camera_attributes = ExtResource("5_w5lum")
+
+[node name="Level" parent="." instance=ExtResource("4_6vhuh")]
+
+[node name="Player" parent="." instance=ExtResource("5_w8rll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25941, 0, 0)
+
+[node name="JellyMonster" parent="." instance=ExtResource("6_58j00")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

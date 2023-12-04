@@ -1,0 +1,65 @@
+[gd_scene load_steps=12 format=3 uid="uid://cra2qdwvmq34l"]
+
+[ext_resource type="Script" path="res://src/scripts/Level1.gd" id="1_c8sp8"]
+[ext_resource type="Texture2D" uid="uid://bm7ogn32r10jg" path="res://blender/Chevron.png" id="1_h4dcr"]
+[ext_resource type="PackedScene" uid="uid://bllcc0r0xkjli" path="res://src/scenes/test_obstacle.tscn" id="2_t0bqy"]
+[ext_resource type="PackedScene" uid="uid://djpliwngdc6wc" path="res://src/scenes/player_health_pickup.tscn" id="3_f7nna"]
+[ext_resource type="Script" path="res://src/scripts/Obstacles.gd" id="3_g6cxa"]
+[ext_resource type="PackedScene" uid="uid://dx525kwtg3cck" path="res://src/scenes/monster_health_pickup.tscn" id="4_qvowj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w0dnp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m81p1"]
+size = Vector3(190, 1, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ne0xw"]
+albedo_texture = ExtResource("1_h4dcr")
+uv1_scale = Vector3(20, 10, 10)
+uv1_offset = Vector3(0, 0.1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hijky"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_erplr"]
+size = Vector3(5.11905, 14.43, 8.0523)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_c8sp8")
+HardObstacle = ExtResource("2_t0bqy")
+PlayerHealthPickup = ExtResource("3_f7nna")
+MonsterHealthPickup = ExtResource("4_qvowj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(95, 0, 0, 0, 1, 0, 0, 0, 4, 0.030248, 0, 0)
+mesh = SubResource("PlaneMesh_w0dnp")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167712, -0.5, 0)
+shape = SubResource("BoxShape3D_m81p1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.114857, -0.986791, -0.114245, 0.73568, 0.00721601, 0.677291, -0.66752, -0.161839, 0.726791, 0, 12, 19.4355)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(9.48116e-15, -2.16903e-07, -4.96217, -4.96217, -2.16903e-07, -1.71664e-20, -2.16903e-07, 4.96217, -2.16903e-07, -2.17349, 0, -40.0017)
+material_override = SubResource("StandardMaterial3D_ne0xw")
+mesh = SubResource("BoxMesh_hijky")
+
+[node name="LevelDurationTimer" type="Timer" parent="."]
+
+[node name="ObstacleSpawn" type="Node" parent="."]
+script = ExtResource("3_g6cxa")
+
+[node name="Area3D" type="Area3D" parent="ObstacleSpawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.885, 7.38, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleSpawn/Area3D"]
+shape = SubResource("BoxShape3D_erplr")
+
+[node name="ObstacleSpawnTimer" type="Timer" parent="ObstacleSpawn"]

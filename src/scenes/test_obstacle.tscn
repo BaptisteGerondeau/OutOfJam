@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bllcc0r0xkjli"]
+
+[ext_resource type="Script" path="res://src/scripts/TestObstacle.gd" id="1_n8ycg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjbql"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_06qcl"]
+material = SubResource("StandardMaterial3D_yjbql")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g0ax7"]
+
+[node name="TestObstacle" type="Node3D"]
+
+[node name="TestObstacle" type="RigidBody3D" parent="."]
+collision_layer = 4
+collision_mask = 20
+inertia = Vector3(1, 1, 1)
+gravity_scale = 0.0
+script = ExtResource("1_n8ycg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestObstacle"]
+mesh = SubResource("BoxMesh_06qcl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestObstacle"]
+shape = SubResource("BoxShape3D_g0ax7")
+
+[node name="DespawnTimer" type="Timer" parent="TestObstacle"]
+wait_time = 5.0
+one_shot = true

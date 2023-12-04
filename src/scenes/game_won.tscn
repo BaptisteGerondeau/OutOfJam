@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctnh3u3ywuscl"]
+
+[ext_resource type="PackedScene" uid="uid://crhw6fr6v5rrl" path="res://src/scenes/game_over.tscn" id="1_0mevw"]
+
+[node name="GameOver" instance=ExtResource("1_0mevw")]
+
+[node name="Label" parent="ColorRect" index="0"]
+text = "WIN"

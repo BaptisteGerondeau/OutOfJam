@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://7hxvij2mwlis"]
+
+[ext_resource type="PackedScene" uid="uid://c3eommbtekygh" path="res://blender/JellyMonster.glb" id="1_yi5x2"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gef0m"]
+height = 2.66572
+radius = 1.2464
+
+[node name="JellyMonster" instance=ExtResource("1_yi5x2")]
+
+[node name="Area3D" type="Area3D" parent="." index="0"]
+collision_layer = 8
+collision_mask = 5
+metadata/Monster = ""
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34048, -0.158941)
+shape = SubResource("CylinderShape3D_gef0m")

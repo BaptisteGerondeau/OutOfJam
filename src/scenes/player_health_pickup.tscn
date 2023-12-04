@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://djpliwngdc6wc"]
+
+[ext_resource type="Script" path="res://src/scripts/PlayerHealthPickup.gd" id="1_ll86e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fp44a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8u6s"]
+albedo_color = Color(0, 0.435294, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3saja"]
+material = SubResource("StandardMaterial3D_h8u6s")
+
+[node name="PlayerHealthPickup" type="Node3D"]
+metadata/PlayerPickup = true
+
+[node name="Area3D" type="Area3D" parent="."]
+process_mode = 1
+collision_layer = 4
+collision_mask = 17
+script = ExtResource("1_ll86e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_fp44a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("SphereMesh_3saja")
+
+[node name="DespawnTimer" type="Timer" parent="Area3D"]
+wait_time = 10.0
