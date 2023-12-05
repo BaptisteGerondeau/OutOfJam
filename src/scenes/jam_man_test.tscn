@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://c03rs0csw505e"]
+
+[ext_resource type="PackedScene" uid="uid://bi4mo5wsyy5hn" path="res://blender/JamMan.glb" id="1_w8wnd"]
+
+[node name="JamMan" instance=ExtResource("1_w8wnd")]
+
+[node name="Skeleton3D" parent="JaMAnimated" index="0"]
+bones/0/position = Vector3(0, 1.19287, 0)
+bones/2/rotation = Quaternion(-0.540307, 0.464177, 0.528436, 0.461913)
+bones/3/rotation = Quaternion(-0.00836299, 0.0113334, 0.105569, 0.994312)
+bones/4/rotation = Quaternion(0.992712, 4.61797e-08, -3.4784e-07, 0.12051)
+bones/5/rotation = Quaternion(0.290826, -5.91817e-10, -1.28414e-08, 0.956776)
+bones/6/rotation = Quaternion(-0.764245, 0.0123127, 0.0103862, 0.644725)
+bones/7/rotation = Quaternion(-0.529916, -0.427781, -0.562458, 0.468864)
+bones/8/rotation = Quaternion(-0.0078875, -0.0113025, -0.144768, 0.98937)
+bones/9/rotation = Quaternion(0.992712, 2.73141e-10, 3.74678e-08, 0.12051)
+bones/10/rotation = Quaternion(0.290826, 5.91828e-10, 1.28414e-08, 0.956776)
+bones/11/rotation = Quaternion(-0.763738, -0.0304302, -0.0256703, 0.644297)
+bones/13/rotation = Quaternion(-0.707015, -0.01139, -0.0113901, 0.707015)
+bones/15/rotation = Quaternion(-0.706546, 0.0281509, 0.0281511, 0.706546)
+
+[node name="AnimationPlayer" parent="." index="6"]
+autoplay = "idle"

@@ -6,3 +6,6 @@ builds/*
 
 # Blender
 *.blend1
+
+# PSD
+*psd

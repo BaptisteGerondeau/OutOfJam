@@ -1,20 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cj5g1kdn7ke2q"]
+[gd_scene load_steps=8 format=3 uid="uid://cj5g1kdn7ke2q"]
 
 [ext_resource type="Script" path="res://src/scripts/PlayerController.gd" id="1_h8hrs"]
 [ext_resource type="Environment" uid="uid://cohvfun4e4h3y" path="res://src/etc/new_environment.tres" id="2_ra3n6"]
 [ext_resource type="CameraAttributesPractical" uid="uid://dx4bducuafu7t" path="res://src/etc/new_camera_attributes_practical.tres" id="3_ok8mq"]
 [ext_resource type="Script" path="res://src/scripts/Gun.gd" id="4_81byc"]
+[ext_resource type="PackedScene" uid="uid://c03rs0csw505e" path="res://src/scenes/jam_man_test.tscn" id="4_q6d1e"]
 [ext_resource type="PackedScene" uid="uid://bb4ll527i8qnr" path="res://src/scenes/bullet.tscn" id="5_yekru"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wcjs"]
-shading_mode = 0
-diffuse_mode = 3
-specular_mode = 1
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_w21ab"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1mx2m"]
-height = 2.0059
+radius = 0.719834
+height = 2.44726
 
 [node name="Player" type="Node3D"]
 
@@ -26,14 +21,8 @@ script = ExtResource("1_h8hrs")
 speed = 10.0
 metadata/Player = ""
 
-[node name="PlayerMesh" type="MeshInstance3D" parent="PlayerCharacterBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925318, 0)
-material_override = SubResource("StandardMaterial3D_0wcjs")
-mesh = SubResource("CapsuleMesh_w21ab")
-skeleton = NodePath("../../..")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925783, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.782974, 0)
 shape = SubResource("CapsuleShape3D_1mx2m")
 
 [node name="Camera3D" type="Camera3D" parent="PlayerCharacterBody"]
@@ -49,8 +38,11 @@ collision_mask = 12
 metadata/Player = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacterBody/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925783, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.782974, 0)
 shape = SubResource("CapsuleShape3D_1mx2m")
+
+[node name="JamMan" parent="PlayerCharacterBody" instance=ExtResource("4_q6d1e")]
+transform = Transform3D(-2.88495e-08, 0, -0.66, 0, 0.66, 0, 0.66, 0, -2.88495e-08, 3.14187, -0.365441, 0.0132468)
 
 [node name="Gun" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.422309, 0.995359, 0)

@@ -1,20 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://djpliwngdc6wc"]
+[gd_scene load_steps=7 format=3 uid="uid://djpliwngdc6wc"]
 
 [ext_resource type="Script" path="res://src/scripts/PlayerHealthPickup.gd" id="1_ll86e"]
 [ext_resource type="Material" uid="uid://bidw5x8a7ynov" path="res://src/etc/pickup_particle_processmaterial.tres" id="2_bys8r"]
+[ext_resource type="PackedScene" uid="uid://bq8wo6807bh76" path="res://src/scenes/jar_blueberry.tscn" id="2_nqhb0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fp44a"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8u6s"]
-albedo_color = Color(0, 0.435294, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wx6k"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_3saja"]
-material = SubResource("StandardMaterial3D_h8u6s")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig778"]
-albedo_color = Color(0.780392, 1, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_wvum6"]
+[sub_resource type="SphereMesh" id="SphereMesh_2pw0l"]
+material = SubResource("StandardMaterial3D_0wx6k")
+radial_segments = 16
+rings = 8
 
 [node name="PlayerHealthPickup" type="Node3D"]
 metadata/PlayerPickup = true
@@ -28,14 +25,13 @@ script = ExtResource("1_ll86e")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_fp44a")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
-mesh = SubResource("SphereMesh_3saja")
-
 [node name="DespawnTimer" type="Timer" parent="Area3D"]
 wait_time = 10.0
 
+[node name="JarBlueberry" parent="Area3D" instance=ExtResource("2_nqhb0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_ig778")
 emitting = false
 amount = 20
 lifetime = 0.5
@@ -43,5 +39,7 @@ one_shot = true
 speed_scale = 1.5
 explosiveness = 1.0
 randomness = 0.1
+visibility_aabb = AABB(-6.25502, -6.17066, -6.23315, 12.4744, 12.4369, 12.1663)
+local_coords = true
 process_material = ExtResource("2_bys8r")
-draw_pass_1 = SubResource("SphereMesh_wvum6")
+draw_pass_1 = SubResource("SphereMesh_2pw0l")
