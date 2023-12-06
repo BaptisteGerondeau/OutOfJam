@@ -43,6 +43,6 @@ func hide_everything():
 	LevelProgression.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if (ProgressionTimer != null):
 		LevelProgression.value = (ProgressionTimer.time_left / level_duration) * 100

@@ -20,19 +20,26 @@ ProgressBar/styles/background = SubResource("StyleBoxFlat_pq6co")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_cl1mj")
 
 [node name="Root" type="Node3D"]
+process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000142455, -0.0135269, 0.00250244)
 script = ExtResource("1_lctow")
 
 [node name="etc" type="Node3D" parent="."]
+process_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="etc"]
 environment = ExtResource("4_amjc6")
 camera_attributes = ExtResource("5_w5lum")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="etc"]
+volume_db = -12.0
+
 [node name="Level" parent="." instance=ExtResource("4_6vhuh")]
+process_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("5_w8rll")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25941, 1.44654, 0)
+process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25941, 5.20446, 0)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("7_bqg8s")
@@ -86,4 +93,5 @@ step = 1.0
 show_percentage = false
 
 [node name="JellyMonster2" parent="." instance=ExtResource("6_58j00")]
-transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, -5.74259, 0, 0)
+process_mode = 1
+transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, -13.7343, 0, 0)

@@ -43,3 +43,5 @@ visibility_aabb = AABB(-6.25502, -6.17066, -6.23315, 12.4744, 12.4369, 12.1663)
 local_coords = true
 process_material = ExtResource("2_bys8r")
 draw_pass_1 = SubResource("SphereMesh_2pw0l")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

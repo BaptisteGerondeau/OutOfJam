@@ -31,6 +31,9 @@ environment = ExtResource("2_ra3n6")
 attributes = ExtResource("3_ok8mq")
 size = 21.8149
 
+[node name="AudioListener3D" type="AudioListener3D" parent="PlayerCharacterBody/Camera3D"]
+current = true
+
 [node name="StartingPosition" type="Node3D" parent="PlayerCharacterBody"]
 
 [node name="Area3D" type="Area3D" parent="PlayerCharacterBody"]
@@ -52,3 +55,5 @@ bullet = ExtResource("5_yekru")
 [node name="FireCooldown" type="Timer" parent="Gun"]
 wait_time = 0.1
 one_shot = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Gun"]
