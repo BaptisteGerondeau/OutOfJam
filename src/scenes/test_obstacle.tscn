@@ -11,6 +11,7 @@ material = SubResource("StandardMaterial3D_yjbql")
 [sub_resource type="BoxShape3D" id="BoxShape3D_g0ax7"]
 
 [node name="TestObstacle" type="Node3D"]
+metadata/Type = "Obstacle"
 
 [node name="TestObstacle" type="RigidBody3D" parent="."]
 collision_layer = 4
@@ -18,6 +19,7 @@ collision_mask = 20
 inertia = Vector3(1, 1, 1)
 gravity_scale = 0.0
 script = ExtResource("1_n8ycg")
+metadata/type = "Obstacle"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestObstacle"]
 mesh = SubResource("BoxMesh_06qcl")
@@ -28,3 +30,11 @@ shape = SubResource("BoxShape3D_g0ax7")
 [node name="DespawnTimer" type="Timer" parent="TestObstacle"]
 wait_time = 5.0
 one_shot = true
+
+[node name="Area3D" type="Area3D" parent="TestObstacle"]
+collision_layer = 4
+collision_mask = 8
+metadata/type = "Obstacle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestObstacle/Area3D"]
+shape = SubResource("BoxShape3D_g0ax7")

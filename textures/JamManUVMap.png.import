@@ -2,25 +2,25 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxnbhnq6den1g"
-path="res://.godot/imported/UVJarMan.png-601f4b6d17efce17f9718ac41fc54265.ctex"
+uid="uid://dv1wqdcciu2cr"
+path="res://.godot/imported/JamManUVMap.png-a3db89b51b190fe970b9b020ce327367.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/UVJarMan.png"
-dest_files=["res://.godot/imported/UVJarMan.png-601f4b6d17efce17f9718ac41fc54265.ctex"]
+source_file="res://textures/JamManUVMap.png"
+dest_files=["res://.godot/imported/JamManUVMap.png-a3db89b51b190fe970b9b020ce327367.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
-compress/channel_pack=0
+compress/channel_pack=1
 mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

@@ -10,10 +10,7 @@ func _ready():
 		
 	apply_impulse(Vector3(-10,0,0))
 	apply_torque_impulse(Vector3(10, 0, 0))
+	$Area3D.owner = self
 
 func despawn():
-	#play despawn animation
-	self.queue_free()
-
-func on_body_entered():
-	print("tut")
+	queue_free()

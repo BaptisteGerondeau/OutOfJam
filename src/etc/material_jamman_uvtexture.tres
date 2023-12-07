@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bpehnv5gjhl6r"]
+
+[ext_resource type="Texture2D" uid="uid://dv1wqdcciu2cr" path="res://textures/JamManUVMap.png" id="1_u3tpg"]
+
+[resource]
+resource_name = "UVJamMan.EYES"
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_u3tpg")
+albedo_texture_force_srgb = true
+texture_filter = 4

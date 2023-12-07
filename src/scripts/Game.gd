@@ -20,6 +20,9 @@ func _ready():
 	$Player/Gun.has_shot.connect(player_malus)
 	$Player/PlayerCharacterBody.has_boosted.connect(player_malus.bind(3))
 	$Player/PlayerCharacterBody.player_died.connect(game_over)
+	$Player/PlayerCharacterBody.player_pickup.connect(player_boost)
+	
+	$JellyMonster2.monster_eat.connect(monster_eat)
 	
 	$UI.set_player_hp(player_health)
 	$UI.set_monster_hp(monster_health)
@@ -53,6 +56,8 @@ func monster_eat():
 	
 func game_over():
 	print("GAME OVER !")
+	$JellyMonster2.on_game_over()
+	await get_tree().create_timer(1.8).timeout
 	get_tree().paused = true
 	$UI.game_over()
 	play_sfx(_gameover_sfx)

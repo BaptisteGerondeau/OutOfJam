@@ -19,9 +19,9 @@ func _ready():
 func get_obstacle() -> PackedScene:
 	var i = randi_range(0, 100)
 	
-	if i < 50:
+	if i < 80:
 		return HardObstacle
-	elif i < 65:
+	elif i < 81:
 		return MonsterHealthPickup
 	else:
 		return PlayerHealthPickup

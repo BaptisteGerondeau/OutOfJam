@@ -1,7 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7e24mr3rs3ge"]
+[gd_scene load_steps=12 format=3 uid="uid://b7e24mr3rs3ge"]
+
+[ext_resource type="Script" path="res://src/scripts/jelly_monster.gd" id="1_h7suj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmeic"]
 resource_name = "Material.001"
+diffuse_mode = 3
+specular_mode = 1
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.56475, 0.043135, 0.156856, 1)
 roughness = 0.5
@@ -20,7 +24,7 @@ vertex_color_use_as_albedo = true
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6qmai"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_u5031"]
 resource_name = "JellyMonster2_Sphere"
 _surfaces = [{
 "aabb": AABB(-2, -0.00460001, -2, 4, 2.67608, 3.53154),
@@ -79,6 +83,10 @@ bind/1/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4375, 0)
 height = 2.66572
 radius = 1.2464
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6h3x6"]
+height = 0.773421
+radius = 1.44864
+
 [sub_resource type="Animation" id="Animation_5i6vp"]
 resource_name = "idle_loop"
 length = 1.25
@@ -124,7 +132,10 @@ _data = {
 }
 
 [node name="JellyMonster" type="Node3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+script = ExtResource("1_h7suj")
 metadata/Monster = true
+metadata/type = "Monster"
 
 [node name="Armature" type="Node3D" parent="."]
 
@@ -145,20 +156,27 @@ bones/1/rotation = Quaternion(-0.00944529, 0.000961549, 0.00263718, 0.999952)
 bones/1/scale = Vector3(1, 1, 1)
 
 [node name="JellyMonster" type="MeshInstance3D" parent="Armature/Skeleton3D"]
-mesh = SubResource("ArrayMesh_6qmai")
+mesh = SubResource("ArrayMesh_u5031")
 skin = SubResource("Skin_22ec6")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 8
 collision_mask = 5
 metadata/Monster = ""
+metadata/Type = "Monster"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34048, -0.158941)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34048, -0.120719)
 shape = SubResource("CylinderShape3D_cyfra")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385843, -0.0850852)
+shape = SubResource("CylinderShape3D_6h3x6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_4q7po")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
