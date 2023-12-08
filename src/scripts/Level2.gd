@@ -1,12 +1,12 @@
 extends Node3D
 
-@export var level_duration: float = 20.0
+@export var level_duration: float = 30.0
 @export var monster_health: int = 10
-@export var player_health: int = 10
-@export var pickup_velocity: float = 5.0
-@export var obstacle_velocity: float = 10.0
+@export var player_health: int = 15
+@export var pickup_velocity: float = 10.0
+@export var obstacle_velocity: float = 20.0
 
-const LEVEL_NUMBER = 1
+const LEVEL_NUMBER = 2
 
 @export var HardObstacle: PackedScene
 @export var PlayerHealthPickup: PackedScene

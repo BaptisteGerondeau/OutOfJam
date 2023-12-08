@@ -1,12 +1,14 @@
 extends Area3D
 
-@export var velocity: float = 5.0
+var velocity: float = 5.0
 
 var _sfx_hit
 
 func _ready():
 	$DespawnTimer.timeout.connect(despawn)
 	$DespawnTimer.start()
+	
+	velocity = get_tree().root.get_node("Root").get_node("Level").pickup_velocity
 	
 	area_entered.connect(on_area_hit)
 	_sfx_hit = preload("res://sound/hit.wav")

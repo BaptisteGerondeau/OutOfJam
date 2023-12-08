@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://b4dhwq4g5duuo"]
+
+[ext_resource type="Script" path="res://src/scripts/Level1.gd" id="1_mknd3"]
+[ext_resource type="PackedScene" uid="uid://bllcc0r0xkjli" path="res://src/scenes/test_obstacle.tscn" id="2_i71d1"]
+[ext_resource type="PackedScene" uid="uid://djpliwngdc6wc" path="res://src/scenes/player_health_pickup.tscn" id="3_pad1g"]
+[ext_resource type="PackedScene" uid="uid://dx525kwtg3cck" path="res://src/scenes/monster_health_pickup.tscn" id="4_rtaij"]
+[ext_resource type="Script" path="res://src/scripts/Obstacles.gd" id="5_qltbe"]
+[ext_resource type="Script" path="res://src/scripts/ChevronScroller.gd" id="6_nsykx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w0dnp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m81p1"]
+size = Vector3(190, 1, 20.5482)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_erplr"]
+size = Vector3(5.11905, 15.4061, 8.0523)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpmeq"]
+albedo_color = Color(0.0235294, 0.0705882, 0.133333, 1)
+uv1_scale = Vector3(2.5, 2.5, 2.5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mbvdg"]
+material = SubResource("StandardMaterial3D_mpmeq")
+size = Vector2(1000, 1000)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_mknd3")
+level_duration = 30.0
+HardObstacle = ExtResource("2_i71d1")
+PlayerHealthPickup = ExtResource("3_pad1g")
+MonsterHealthPickup = ExtResource("4_rtaij")
+
+[node name="LowerBound" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.238595, 0)
+collision_layer = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LowerBound"]
+transform = Transform3D(95, 0, 0, 0, 1, 0, 0, 0, 10.379, 0.030248, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_w0dnp")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LowerBound"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167712, -0.5, 0)
+shape = SubResource("BoxShape3D_m81p1")
+
+[node name="UpperBound" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.7322, 0)
+collision_layer = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="UpperBound"]
+transform = Transform3D(95, 0, 0, 0, 1, 0, 0, 0, 10.379, 0.030248, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_w0dnp")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UpperBound"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167712, -0.5, 0)
+shape = SubResource("BoxShape3D_m81p1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 0.707107, -3.09086e-08, 0.707107, -0.707107, 3.09086e-08, 0.707107, 0.0761938, 12.0381, 19.4355)
+
+[node name="LevelDurationTimer" type="Timer" parent="."]
+
+[node name="ObstacleSpawn" type="Node" parent="."]
+script = ExtResource("5_qltbe")
+
+[node name="Area3D" type="Area3D" parent="ObstacleSpawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 7.5, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleSpawn/Area3D"]
+shape = SubResource("BoxShape3D_erplr")
+
+[node name="ObstacleSpawnTimer" type="Timer" parent="ObstacleSpawn"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.90799e-15, -4.36497e-08, -0.998589, -0.998589, -4.36497e-08, 0, -4.36497e-08, 0.998589, -4.36497e-08, 0, 3.89228, -233.553)
+mesh = SubResource("PlaneMesh_mbvdg")
+
+[node name="ChevronScroller" type="Node" parent="."]
+script = ExtResource("6_nsykx")
+ScrollingSpeed = 5.0

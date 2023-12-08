@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cra2qdwvmq34l"]
+[gd_scene load_steps=12 format=3 uid="uid://cn7ud1ask3664"]
 
-[ext_resource type="Script" path="res://src/scripts/Level1.gd" id="1_c8sp8"]
-[ext_resource type="PackedScene" uid="uid://bllcc0r0xkjli" path="res://src/scenes/test_obstacle.tscn" id="2_t0bqy"]
-[ext_resource type="PackedScene" uid="uid://djpliwngdc6wc" path="res://src/scenes/player_health_pickup.tscn" id="3_f7nna"]
-[ext_resource type="Script" path="res://src/scripts/Obstacles.gd" id="3_g6cxa"]
-[ext_resource type="PackedScene" uid="uid://dx525kwtg3cck" path="res://src/scenes/monster_health_pickup.tscn" id="4_qvowj"]
-[ext_resource type="Script" path="res://src/scripts/ChevronScroller.gd" id="8_b0s2n"]
+[ext_resource type="Script" path="res://src/scripts/Level2.gd" id="1_ryrxu"]
+[ext_resource type="PackedScene" uid="uid://bllcc0r0xkjli" path="res://src/scenes/test_obstacle.tscn" id="2_mjyx3"]
+[ext_resource type="PackedScene" uid="uid://djpliwngdc6wc" path="res://src/scenes/player_health_pickup.tscn" id="3_1xfv6"]
+[ext_resource type="PackedScene" uid="uid://dx525kwtg3cck" path="res://src/scenes/monster_health_pickup.tscn" id="4_yydoc"]
+[ext_resource type="Script" path="res://src/scripts/Obstacles.gd" id="5_1cxjt"]
+[ext_resource type="Script" path="res://src/scripts/ChevronScroller.gd" id="6_5tqlg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_w0dnp"]
 
@@ -16,7 +16,7 @@ size = Vector3(190, 1, 20.5482)
 size = Vector3(5.11905, 15.4061, 8.0523)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpmeq"]
-albedo_color = Color(0.0235294, 0.0705882, 0.133333, 1)
+albedo_color = Color(0.0235294, 0.0705882, 0.219608, 1)
 uv1_scale = Vector3(2.5, 2.5, 2.5)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mbvdg"]
@@ -24,10 +24,13 @@ material = SubResource("StandardMaterial3D_mpmeq")
 size = Vector2(1000, 1000)
 
 [node name="Level" type="Node3D"]
-script = ExtResource("1_c8sp8")
-HardObstacle = ExtResource("2_t0bqy")
-PlayerHealthPickup = ExtResource("3_f7nna")
-MonsterHealthPickup = ExtResource("4_qvowj")
+script = ExtResource("1_ryrxu")
+level_duration = 40.0
+pickup_velocity = 20.0
+obstacle_velocity = 40.0
+HardObstacle = ExtResource("2_mjyx3")
+PlayerHealthPickup = ExtResource("3_1xfv6")
+MonsterHealthPickup = ExtResource("4_yydoc")
 
 [node name="LowerBound" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.238595, 0)
@@ -63,7 +66,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 0.707107, -3.09086e-08, 0.707107, -
 [node name="LevelDurationTimer" type="Timer" parent="."]
 
 [node name="ObstacleSpawn" type="Node" parent="."]
-script = ExtResource("3_g6cxa")
+script = ExtResource("5_1cxjt")
 
 [node name="Area3D" type="Area3D" parent="ObstacleSpawn"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 7.5, 0)
@@ -80,5 +83,5 @@ transform = Transform3D(1.90799e-15, -4.36497e-08, -0.998589, -0.998589, -4.3649
 mesh = SubResource("PlaneMesh_mbvdg")
 
 [node name="ChevronScroller" type="Node" parent="."]
-script = ExtResource("8_b0s2n")
+script = ExtResource("6_5tqlg")
 ScrollingSpeed = 5.0

@@ -7,6 +7,8 @@ var _begin_sfx
 var _gameover_sfx
 var _gamewin_sfx
 
+const NUMBER_OF_LEVELS = 3
+
 @onready var level_duration_timer
 
 func _ready():
@@ -37,6 +39,8 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("reload"):
 		reload()
+	if event.is_action_pressed("next_level"):
+		load_nextlevel()
 
 func player_malus(amount = 1):
 	player_health -= amount
@@ -61,7 +65,6 @@ func game_over():
 	get_tree().paused = true
 	$UI.game_over()
 	play_sfx(_gameover_sfx)
-	#TODO reload scene
 	
 func game_win():
 	get_tree().paused = true
@@ -73,6 +76,17 @@ func game_win():
 func reload():
 	get_tree().paused = true
 	get_tree().reload_current_scene()
+	get_tree().paused = false
+	
+func load_nextlevel():
+	get_tree().paused = true
+	var level_number = ($Level.LEVEL_NUMBER + 1)
+	if level_number > NUMBER_OF_LEVELS:
+		print("GAME WON !")
+		level_number = 1
+	var level_name = "OutOfJamLevel" + str(level_number)
+	print("Loading Level " + level_name)
+	get_tree().change_scene_to_file("res://src/scenes/" + level_name + ".tscn")
 	get_tree().paused = false
 
 func play_sfx(sfx):

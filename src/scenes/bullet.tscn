@@ -14,13 +14,13 @@ albedo_color = Color(0.831373, 0.462745, 0.00392157, 1)
 material = SubResource("StandardMaterial3D_lwbi6")
 
 [node name="Bullet" type="Node3D"]
-metadata/Type = "Bullet"
+metadata/type = "Bullet"
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_t73in")
-metadata/Bullet = ""
+metadata/type = "Bullet"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(-1.74846e-08, -0.4, 0, 0.4, -1.74846e-08, 0, 0, 0, 0.4, 0, 0, 0)

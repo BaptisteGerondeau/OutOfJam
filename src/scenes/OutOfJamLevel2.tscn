@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://ctx3tvh7g3d1t"]
+
+[ext_resource type="Script" path="res://src/scripts/Game.gd" id="1_e45qy"]
+[ext_resource type="Environment" uid="uid://cohvfun4e4h3y" path="res://src/etc/new_environment.tres" id="2_f77j7"]
+[ext_resource type="CameraAttributesPractical" uid="uid://dx4bducuafu7t" path="res://src/etc/new_camera_attributes_practical.tres" id="3_8u50r"]
+[ext_resource type="PackedScene" uid="uid://cn7ud1ask3664" path="res://src/scenes/level2.tscn" id="4_0assp"]
+[ext_resource type="PackedScene" uid="uid://cj5g1kdn7ke2q" path="res://src/scenes/player.tscn" id="5_tp86h"]
+[ext_resource type="Script" path="res://src/scripts/UI.gd" id="6_ku3g0"]
+[ext_resource type="LabelSettings" uid="uid://6103sawbiw2n" path="res://src/etc/label_settings.tres" id="7_d1pfd"]
+[ext_resource type="PackedScene" uid="uid://b7e24mr3rs3ge" path="res://src/scenes/jelly_monster.tscn" id="8_i7k70"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pq6co"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 0.490196)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cl1mj"]
+bg_color = Color(0.427451, 0.686275, 0, 1)
+
+[sub_resource type="Theme" id="Theme_7tqcf"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_pq6co")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_cl1mj")
+
+[node name="Root" type="Node3D"]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000142455, -0.0135269, 0.00250244)
+script = ExtResource("1_e45qy")
+
+[node name="etc" type="Node3D" parent="."]
+process_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="etc"]
+environment = ExtResource("2_f77j7")
+camera_attributes = ExtResource("3_8u50r")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="etc"]
+volume_db = -12.0
+
+[node name="Level" parent="." instance=ExtResource("4_0assp")]
+
+[node name="Player" parent="." instance=ExtResource("5_tp86h")]
+process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25941, 5.20446, 0)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("6_ku3g0")
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerHealth" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -230.0
+offset_top = 38.0
+offset_right = -56.0
+offset_bottom = 86.0
+grow_horizontal = 0
+text = "Player HP : "
+label_settings = ExtResource("7_d1pfd")
+language = "English"
+
+[node name="MonsterHealth" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 34.0
+offset_right = 232.0
+offset_bottom = 82.0
+text = "Monster HP : "
+label_settings = ExtResource("7_d1pfd")
+
+[node name="LevelProgression" type="ProgressBar" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -323.0
+offset_top = -41.0
+offset_right = 328.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_7tqcf")
+step = 1.0
+show_percentage = false
+
+[node name="JellyMonster2" parent="." instance=ExtResource("8_i7k70")]
+process_mode = 1
+transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, -13.7343, 0, 0)
